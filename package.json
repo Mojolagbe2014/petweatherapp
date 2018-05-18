@@ -1,0 +1,39 @@
+{
+  "name": "pet-weather-app",
+  "version": "1.0.0",
+  "main": "./",
+  "scripts": {
+    "test": "echo 'Error: no specified test' && exit 1",
+    "start1": "node bootstrap.js",
+    "start": "./node_modules/nodemon/bin/nodemon.js ./app/server.js --exec babel-node --presets es2015"
+  },
+  "author": {
+    "name": "Jamiu Babatunde Mojolagbe",
+    "email": "mojolagbe@gmail.com",
+    "url": "https://github.com/Mojolagbe2014"
+  },
+  "license": {
+    "type": "mit"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
+    "handlebars": "^3.0.3",
+    "hapi": "^16.6.3",
+    "hapi-auth-jwt": "^4.0.0",
+    "joi": "^13.3.0",
+    "jsonwebtoken": "^8.2.1",
+    "vision": "^3.0.0",
+    "inert": "^3.0.0"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "nodemon": "^1.17.4"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "null"
+  }
+}
