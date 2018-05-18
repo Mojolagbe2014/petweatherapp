@@ -1,0 +1,14 @@
+{
+    "author": {
+        "name": "Jamiu Mojolagbe",
+        "email": "mojolagbe@gmail.com"
+    },
+    "development": {
+        "host": "127.0.0.1",
+        "port": 3000,
+        "charset": "utf8"
+    },
+    "production": {
+        "use_env_variable": "DATABASE_URL"
+    }
+}
