@@ -1,6 +1,7 @@
 'use strict';
 
 import config from '../config/config';
+//import author from '../config/author';
 import routes from './routes';
 
 const Hapi = require('hapi');   

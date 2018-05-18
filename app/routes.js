@@ -1,16 +1,29 @@
+import author from '../config/author';
 
 const routes = [  
     {
         method: 'GET',
         path: '/',
-        handler: function(request, reply) {
-            // Render the view with the custom greeting
+        handler: function(request, response) {
             var data = {
-                title: 'This is Index!',
-                message: 'Hello, World. You crazy handlebars layout'
+                title: 'Pet Weather App',
+                message: 'Welcome to Pet Weather App'
             };
 
-            return reply.view('index', data);
+            return response.view('index', data);
+        }
+    },
+    {
+        method: 'GET',
+        path: '/author/',
+        handler: function(request, response) {
+            var data = {
+                name: author.name,
+                phone: author.phone,
+                email: author.email
+            };
+
+            return response.view('author', data);
         }
     }
 ];
