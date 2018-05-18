@@ -1,6 +1,7 @@
 import author from '../config/author';
 
 const routes = [  
+    // home 
     {
         method: 'GET',
         path: '/',
@@ -13,6 +14,8 @@ const routes = [
             return response.view('index', data);
         }
     },
+    
+    // author
     {
         method: 'GET',
         path: '/author/',
@@ -24,6 +27,52 @@ const routes = [
             };
 
             return response.view('author', data);
+        }
+    },
+    
+    // --------------------
+    // Static file routes
+    // ---------------------
+    
+    // stylesheets
+    {
+        method: 'GET',
+        path: '/css/{style*}',
+        handler: {
+            directory: {
+                path:    __dirname + '/../public/css',
+                listing: false,
+                index:   false
+            }
+        }
+//        handler: (request, reply) => {
+//            reply.file(`./public/css/${request.params.style}`);
+//        }
+    },
+    
+    // images
+    {
+        method: 'GET',
+        path: '/images/{image*}',
+        handler: {
+            directory: {
+                path:    __dirname + '/../public/images',
+                listing: false,
+                index:   false
+            }
+        }
+    },
+
+    // scripts
+    {
+        method: 'GET',
+        path: '/scripts/{script*}',
+        handler: {
+            directory: {
+                path:    __dirname + '/../public/scripts',
+                listing: false,
+                index:   false
+            }
         }
     }
 ];

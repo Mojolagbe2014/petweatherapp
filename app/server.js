@@ -6,7 +6,7 @@ import routes from './routes';
 
 const Hapi = require('hapi');   
 const server = new Hapi.Server();   
-const Path = require('path');
+const path = require('path');
 const Hoek = require('hoek');
 
 // ------------------
@@ -14,7 +14,8 @@ const Hoek = require('hoek');
 // ------------------
 server.connection({
     host: config.host, 
-    port: config.port
+    port: config.port,
+    routes: {cors: true}
 });
 
 // --------------------------------------

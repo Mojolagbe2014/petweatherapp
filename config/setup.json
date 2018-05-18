@@ -7,7 +7,8 @@
     "development": {
         "host": "127.0.0.1",
         "port": 3000,
-        "charset": "utf8"
+        "charset": "utf8",
+        "restURL": "http://127.0.0.1:8000/"
     },
     "production": {
         "use_env_variable": "DATABASE_URL"
