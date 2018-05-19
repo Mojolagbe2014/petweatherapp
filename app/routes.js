@@ -51,6 +51,15 @@ const routes = [
         }
     },
     
+    // add pet
+    {
+        method: 'GET',
+        path: '/pet/add/',
+        handler: function(request, response) {
+            response.view('pet', {status: 0, data: 1});
+        }
+    },
+    
     // author
     {
         method: 'GET',
