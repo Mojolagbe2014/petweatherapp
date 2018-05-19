@@ -2,7 +2,9 @@
     "author": {
         "name": "Jamiu Mojolagbe",
         "email": "mojolagbe@gmail.com",
-        "phone": "2048697315"
+        "phone": "2048697315",
+        "GoogleAPIKey": "AIzaSyDQ27WgInDdmdUlbeM_-CsTmfY_Jx0LCyg",
+        "DarkSkyAPIKey": "752ca7ee5d3924bfb68660d1ad417709"
     },
     "development": {
         "host": "127.0.0.1",

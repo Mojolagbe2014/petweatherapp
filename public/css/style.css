@@ -14,6 +14,9 @@ a.nodecorate {
 .author-details {
     font-size: 16px;
 }
+.remove-weight {
+    font-weight: 100;
+}
 .footer {
   position: absolute;
   bottom: 0px;
@@ -21,4 +24,27 @@ a.nodecorate {
   height: 60px;
   line-height: 60px; 
   background-color: #000;
+}
+
+@media only screen and (max-width : 480px) {
+    .footer { position: fixed; }
+    .action-btn { font-size: 12px; }
+}
+
+@media only screen and (max-width : 360px) {
+    .footer { position: fixed; }
+    .action-btn { font-size: 10px; padding: 2px 5px 2px 5px; }
+    
+}
+
+@media only screen and (max-width : 320px) {
+    .footer { position: fixed; }
+    .action-btn { font-size: 10px; padding: 2px 5px 2px 5px; }
+    
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+    .footer { position: absolute; }
+    .action-btn { font-size: 14px; }
 }

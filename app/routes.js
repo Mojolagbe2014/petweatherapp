@@ -22,6 +22,24 @@ const routes = [
         }
     },
     
+    // pet details
+    {
+        method: 'GET',
+        path: '/pets/{id}/',
+        handler: function(request, response) {
+            req(config.restURL+'pets/'+request.params.id+'/', function (err, resp, cont) {
+                if (!err && resp.statusCode === 200) {
+                    //console.log({status: resp.statusCode, data: JSON.parse(cont)});
+                    response.view('pets', {status: resp.statusCode, data: JSON.parse(cont)});
+                } else {
+                    throw err;
+                    console.log(err);
+                    response.view('pets', {status: resp.statusCode, data: err});
+                }
+            });
+        }
+    },
+    
     // author
     {
         method: 'GET',
