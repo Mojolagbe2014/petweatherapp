@@ -1,4 +1,5 @@
 import author from '../config/author';
+const http = require('request');
 
 const routes = [  
     // home 
@@ -6,6 +7,12 @@ const routes = [
         method: 'GET',
         path: '/',
         handler: function(request, response) {
+            http('http://www.google.com', function (err, resp, body) {
+                if (!err && resp.statusCode === 200) {
+                    console.log(resp.statusCode); // Show the HTML for the Google homepage.
+                }
+             });
+            
             var data = {
                 title: 'Pet Weather App',
                 message: 'Welcome to Pet Weather App'

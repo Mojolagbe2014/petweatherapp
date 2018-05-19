@@ -25,6 +25,7 @@
     "inert": "^3.0.0",
     "joi": "^13.3.0",
     "jsonwebtoken": "^8.2.1",
+    "request": "^1.9.9",
     "vision": "^3.0.0"
   },
   "devDependencies": {

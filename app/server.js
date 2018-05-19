@@ -8,6 +8,7 @@ const Hapi = require('hapi');
 const server = new Hapi.Server();   
 const path = require('path');
 const Hoek = require('hoek');
+const request = require('request');
 
 // ------------------
 // Configure the port
@@ -70,3 +71,5 @@ server.start(error => {
     console.log(`Server started at ${server.info.uri }`);
     console.log(`App running on port ${config.port}...`);
 });
+
+
