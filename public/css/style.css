@@ -26,6 +26,10 @@ a.nodecorate {
   background-color: #000;
 }
 
+.img-responsive {
+    margin: 0 auto;
+}
+
 @media only screen and (max-width : 480px) {
     h2 { font-size: 20px; }
     h3 { font-size: 15px; }
