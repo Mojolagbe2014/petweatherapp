@@ -9,6 +9,7 @@ const server = new Hapi.Server();
 const path = require('path');
 const Hoek = require('hoek');
 const request = require('request');
+const Joi = require('joi');
 
 // ------------------
 // Configure the port

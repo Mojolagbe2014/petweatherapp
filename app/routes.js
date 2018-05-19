@@ -2,6 +2,7 @@ import author from '../config/author';
 import config from '../config/config';
 const req = require('request');
 //const fstream = require("fs");
+const Joi = require('joi');
 
 const routes = [  
     // home 
@@ -27,16 +28,26 @@ const routes = [
         method: 'GET',
         path: '/pets/{id}/',
         handler: function(request, response) {
-            req(config.restURL+'pets/'+request.params.id+'/', function (err, resp, cont) {
-                if (!err && resp.statusCode === 200) {
-                    //console.log({status: resp.statusCode, data: JSON.parse(cont)});
-                    response.view('pets', {status: resp.statusCode, data: JSON.parse(cont)});
-                } else {
-                    throw err;
-                    console.log(err);
-                    response.view('pets', {status: resp.statusCode, data: err});
+            //response.view('pets', {status: 0, data: 1});
+            if(request.params.id > 0) {
+                req(config.restURL+'pets/'+request.params.id+'/', function (err, resp, cont) {
+                    if (!err && resp.statusCode === 200) {
+                        //console.log({status: resp.statusCode, data: JSON.parse(cont)});
+                        response.view('pets', {status: resp.statusCode, data: JSON.parse(cont)});
+                    } else {
+                        throw err;
+                        console.log(err);
+                        response.view('pets', {status: resp.statusCode, data: err});
+                    }
+                });
+            }
+        },
+        config: {
+            validate: {
+                params: {
+                    id: Joi.number().integer().min(1)
                 }
-            });
+            }
         }
     },
     
