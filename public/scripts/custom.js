@@ -4,8 +4,14 @@ $(document).ready(function(){
     var responseBox = $('#weather-response');
     var thisURL = window.location.href;
     
-    if (thisURL.indexOf("pets") >= 0)
+    if (thisURL.indexOf("/pets/") >= 0){
         checkWeather(thisPet, messageBox, responseBox);
+    }
+    
+    if (thisURL.indexOf("/pet/") >= 0){
+        getLocation($("form"));
+    }
+    
 });
 
 function checkWeather(pet, messageBox, responseBox){
@@ -38,4 +44,15 @@ function checkWeather(pet, messageBox, responseBox){
         },
         error: function(xhr, status, error) {console.log(error);;}
     });
+}
+
+function getLocation(selector) {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position){
+            selector.find('#latitude').val(position.coords.latitude);
+            selector.find('#longitude').val(position.coords.longitude);
+        });
+    } else {
+        selector.find('.message-box').html('Geolocation not supported!!!');
+    }
 }
