@@ -2,8 +2,10 @@ $(document).ready(function(){
     var thisPet = $('#temp-details');
     var messageBox = $('.message-box');
     var responseBox = $('#weather-response');
+    var thisURL = window.location.href;
     
-    checkWeather(thisPet, messageBox, responseBox);
+    if (thisURL.indexOf("pets") >= 0)
+        checkWeather(thisPet, messageBox, responseBox);
 });
 
 function checkWeather(pet, messageBox, responseBox){
