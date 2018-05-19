@@ -1,5 +1,7 @@
 import author from '../config/author';
-const http = require('request');
+import config from '../config/config';
+const req = require('request');
+//const fstream = require("fs");
 
 const routes = [  
     // home 
@@ -7,18 +9,16 @@ const routes = [
         method: 'GET',
         path: '/',
         handler: function(request, response) {
-            http('http://www.google.com', function (err, resp, body) {
+            //req(config.restURL+'pets/').pipe(fstream.createWriteStream("temp.json"));
+            req(config.restURL+'pets/', function (err, resp, cont) {
                 if (!err && resp.statusCode === 200) {
-                    console.log(resp.statusCode); // Show the HTML for the Google homepage.
+                    response.view('index', {status: resp.statusCode, data: JSON.parse(cont)});
+                } else {
+                    throw err;
+                    console.log(err);
+                    response.view('index', {status: resp.statusCode, data: JSON.parse(err)});
                 }
-             });
-            
-            var data = {
-                title: 'Pet Weather App',
-                message: 'Welcome to Pet Weather App'
-            };
-
-            return response.view('index', data);
+            });
         }
     },
     
