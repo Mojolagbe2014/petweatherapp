@@ -56,7 +56,7 @@ const routes = [
         method: 'GET',
         path: '/pet/add/',
         handler: function(request, response) {
-            response.view('pet', {status: 0, data: 1});
+            response.view('pet', {status: 1, actionURL: config.restURL+'pets/'});
         }
     },
     

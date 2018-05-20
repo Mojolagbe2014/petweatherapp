@@ -3,16 +3,21 @@ $(document).ready(function(){
     var messageBox = $('.message-box');
     var responseBox = $('#weather-response');
     var thisURL = window.location.href;
+    var addForm = $("form");
     
     if (thisURL.indexOf("/pets/") >= 0){
         checkWeather(thisPet, messageBox, responseBox);
     }
     
     if (thisURL.indexOf("/pet/") >= 0){
-        getLocation($("form"));
-        
+        getLocation(addForm);
     }
     
+    $('#latitude, #longitude').on('change paste keyup', function() {
+        var latit = $('#latitude').val();
+        var longit = $('#longitude').val();
+        reverseGeoLocation(latit, longit, addForm);
+    });
 });
 
 function checkWeather(pet, messageBox, responseBox){
