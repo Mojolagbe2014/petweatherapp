@@ -10,6 +10,7 @@ $(document).ready(function(){
     
     if (thisURL.indexOf("/pet/") >= 0){
         getLocation($("form"));
+        
     }
     
 });
@@ -49,10 +50,40 @@ function checkWeather(pet, messageBox, responseBox){
 function getLocation(selector) {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position){
-            selector.find('#latitude').val(position.coords.latitude);
-            selector.find('#longitude').val(position.coords.longitude);
+            var latitude = position.coords.latitude,
+                longitude = position.coords.longitude;
+                
+            selector.find('#latitude').val(latitude);
+            selector.find('#longitude').val(longitude);
+            reverseGeoLocation(latitude, longitude, selector);
         });
     } else {
         selector.find('.message-box').html('Geolocation not supported!!!');
     }
+}
+
+function reverseGeoLocation(latitude, longitude, selector) {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url:'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latitude+','+longitude+'&sensor=true&key=AIzaSyDQ27WgInDdmdUlbeM_-CsTmfY_Jx0LCyg',
+        success: function(data)  {
+            //console.log(data);
+            var city = '';
+            var province = '';
+            
+            for (var i = 0; i < data.results[4].address_components.length; i++) {
+                for (var j = 0; j < data.results[4].address_components[i].types.length; j++) {
+                    if(data.results[4].address_components[i].types[j] === 'locality') {
+                        city = data.results[4].address_components[i].long_name;
+                    }
+                    if(data.results[4].address_components[i].types[j] === 'administrative_area_level_1') {
+                        province = data.results[4].address_components[i].short_name;
+                    }
+                }
+            }
+            selector.find('#location1').val(city+', '+province);
+            selector.find('#location').val(city+', '+province);
+        }
+    });  
 }
