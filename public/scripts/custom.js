@@ -35,12 +35,15 @@ $(document).ready(function(){
             type: 'POST',
             dataType: 'json',
             data: formData,
+            beforeSend: function() {
+                messageBox.empty().html($('<img src="/images/loading.gif" width="50" height="50" alt="Loading..."/>'));
+            },
             success : function(data, status) {
                 var contents = data.message ? data.message : data;
                 if(data.status ===1) { 
-                    messageBox.append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>'+contents+'  </div>'); 
+                    messageBox.empty().html($('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>'+contents+'  </div>')); 
                 }
-                else messageBox.append('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>'+contents +'</div>');
+                else messageBox.empty().html($('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>'+contents +'</div>'));
             },
             error : function(xhr, status) {
                 erroMsg = '';
@@ -50,7 +53,7 @@ $(document).ready(function(){
                 else if(status==='parsererror'){ erroMsg = 'Error. Parsing JSON Request failed.'; }
                 else if(status==='timeout'){  erroMsg = 'Request Time out.';}
                 else { erroMsg = 'Unknow Error.\n'+xhr.responseText;}          
-                messageBox.html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Pet not added.\n '+erroMsg+'</div>');
+                messageBox.empty().html($('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Pet not added.\n '+erroMsg+'</div>'));
             }
         });
         
