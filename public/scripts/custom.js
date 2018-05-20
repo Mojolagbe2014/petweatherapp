@@ -18,6 +18,43 @@ $(document).ready(function(){
         var longit = $('#longitude').val();
         reverseGeoLocation(latit, longit, addForm);
     });
+    
+    $("form#AddPet").submit(function(e){ 
+        e.stopPropagation();
+        e.preventDefault();
+        
+        var formData = {};
+        $('#AddPet :input').each(function() {
+            if(this.name !="") formData[this.name] = $(this).val();
+        });
+        //console.log(formData);
+        //var testData = {name: 'name', type: 'type', breed: 'breed', location:'location', latitude:90, longitude:-90};
+        
+        $.ajax({
+            url: $(this).attr("action"),
+            type: 'POST',
+            dataType: 'json',
+            data: formData,
+            success : function(data, status) {
+                var contents = data.message ? data.message : data;
+                if(data.status ===1) { 
+                    messageBox.append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>'+contents+'  </div>'); 
+                }
+                else messageBox.append('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>'+contents +'</div>');
+            },
+            error : function(xhr, status) {
+                erroMsg = '';
+                if(xhr.status===0){ erroMsg = 'There is a problem connecting to internet. Please review your internet connection.'; }
+                else if(xhr.status===404){ erroMsg = 'Requested page not found.'; }
+                else if(xhr.status===500){ erroMsg = 'Internal Server Error.';}
+                else if(status==='parsererror'){ erroMsg = 'Error. Parsing JSON Request failed.'; }
+                else if(status==='timeout'){  erroMsg = 'Request Time out.';}
+                else { erroMsg = 'Unknow Error.\n'+xhr.responseText;}          
+                messageBox.html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Pet not added.\n '+erroMsg+'</div>');
+            }
+        });
+        
+    });
 });
 
 function checkWeather(pet, messageBox, responseBox){
@@ -87,7 +124,7 @@ function reverseGeoLocation(latitude, longitude, selector) {
                     }
                 }
             }
-            selector.find('#location1').val(city+', '+province);
+            //selector.find('#location1').val(city+', '+province);
             selector.find('#location').val(city+', '+province);
         }
     });  

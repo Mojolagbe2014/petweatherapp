@@ -1,14 +1,15 @@
 {{!< layout/default}}
 {{! Insert this page content into the {content} of the default.html template }}
 
+<div id="message-box" class="message-box"></div>
 <div class="panel panel-default">
     <div class="panel-heading"><h3>Add Your Pet</h3> </div>
     <div class="panel-body">
-        <form role="form" id="addPet" name="addPet" action="{{actionURL}}" method="POST">
+        <form id="AddPet" action="{{actionURL}}" method="POST">
             <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" placeholder="Name">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                 </div>
             </div>
             
@@ -16,7 +17,7 @@
             <div class="form-group row">
                 <label for="type" class="col-sm-2 col-form-label">Type</label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="type">
+                    <select class="form-control" id="type" name="type">
                         <option value="Dog">Dog</option>
                         <option value="Cat">Cat</option>
                         <option value="Bird">Bird</option>
@@ -28,29 +29,28 @@
             <div class="form-group row">
                 <label for="breed" class="col-sm-2 col-form-label">Breed</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="breed" placeholder="Breed">
+                    <input type="text" class="form-control" id="breed" name="breed" placeholder="Breed">
                 </div>
             </div>
             
             <div class="form-group row">
-                <label for="location1" class="col-sm-2 col-form-label">Location</label>
+                <label for="location" class="col-sm-2 col-form-label">Location</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="location1" placeholder="Location" disabled>
-                    <input type="hidden" id="location" value="">
+                    <input type="text" class="form-control" id="location" name="location" placeholder="Location" disabled>
                 </div>
             </div>
             
             <div class="form-group row">
                 <label for="latitude" class="col-sm-2 col-form-label">Latitude</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="latitude" placeholder="Latitude">
+                    <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Latitude">
                 </div>
             </div>
             
             <div class="form-group row">
                 <label for="longitude" class="col-sm-2 col-form-label">Longitude</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="longitude" placeholder="Longitude">
+                    <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Longitude">
                 </div>
             </div>
             
