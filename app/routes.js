@@ -1,8 +1,8 @@
-import author from '../config/author';
-import config from '../config/config';
-const req = require('request');
+var author = require('../config/author');
+var config = require('../config/config');
+var req = require('request');
 //const fstream = require("fs");
-const Joi = require('joi');
+var Joi = require('joi');
 
 const routes = [  
     // home 
@@ -121,4 +121,4 @@ const routes = [
         }
     }
 ];
-export default routes;
+module.exports = routes;

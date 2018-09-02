@@ -1,28 +1,26 @@
 'use strict';
 
-import config from '../config/config';
+var config = require('../config/config');
 //import author from '../config/author';
-import routes from './routes';
+var routes = require('./routes');
 
 const Hapi = require('hapi');   
-const server = new Hapi.Server();   
-const path = require('path');
-const Hoek = require('hoek');
-const request = require('request');
+const server = new Hapi.Server();
+const req = require('request');
 const Joi = require('joi');
+const author = require('../config/author');
+
+// ----------------------------
+// Setup configuration settings
+// ----------------------------
+var connecParams = (config.env === 'production')  ?   { port: process.env.PORT, routes: { cors: true } }
+                : {port: config.port, host:config.host, routes: { cors: true }};
 
 // ------------------
-// Configure the port
+// configure the port
 // ------------------
-server.connection({
-    host: config.host, 
-    port: config.port,
-    routes: {cors: true}
-});
+server.connection(connecParams);
 
-// --------------------------------------
-// Register and configure the view engine
-// --------------------------------------
 const start = async () => {
     server.register(
         [  
@@ -45,14 +43,13 @@ const start = async () => {
                 path: '../views',
                 layoutPath: '../views/layout',
                 layout: 'default',
-                helpersPath: '../views/helpers',
+                //helpersPath: 'views/helpers',
                 partialsPath: '../views/partials'
             });
         }
     );
 };
 start();
-
 
 // --------------
 // Load Routes
@@ -72,5 +69,3 @@ server.start(error => {
     console.log(`Server started at ${server.info.uri }`);
     console.log(`App running on port ${config.port}...`);
 });
-
-

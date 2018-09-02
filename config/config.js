@@ -1,4 +1,3 @@
-const env       = process.env.NODE_ENV || 'development';
-const config    = require('./setup')[env];
+const config    = require('./setup')['config'];
 
 module.exports = config;

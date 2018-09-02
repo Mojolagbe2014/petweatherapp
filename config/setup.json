@@ -6,13 +6,11 @@
         "GoogleAPIKey": "AIzaSyDQ27WgInDdmdUlbeM_-CsTmfY_Jx0LCyg",
         "DarkSkyAPIKey": "752ca7ee5d3924bfb68660d1ad417709"
     },
-    "development": {
-        "host": "127.0.0.1",
+    "config": {
+        "env": "development",
+        "host": "localhost",
         "port": 3000,
         "charset": "utf8",
-        "restURL": "http://127.0.0.1:8000/"
-    },
-    "production": {
-        "use_env_variable": "DATABASE_URL"
+        "restURL": "https://petshelterapi1.herokuapp.com/"
     }
 }
