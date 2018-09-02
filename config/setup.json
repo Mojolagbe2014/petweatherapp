@@ -7,7 +7,7 @@
         "DarkSkyAPIKey": "752ca7ee5d3924bfb68660d1ad417709"
     },
     "config": {
-        "env": "development",
+        "env": "production",
         "host": "localhost",
         "port": 3000,
         "charset": "utf8",
