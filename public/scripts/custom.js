@@ -77,7 +77,7 @@ function checkWeather(pet, messageBox, responseBox){
             responseBox.removeClass('hidden').show();
             console.log(data);
             
-            var minVal = 0.05;
+            var minVal = 0.5;
             var precipVal = 0;
             $.each(data.hourly.data, function(index, item) { 
                 precipVal = item.precipProbability > precipVal ? item.precipProbability : precipVal; 
