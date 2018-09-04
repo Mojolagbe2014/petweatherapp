@@ -75,6 +75,23 @@ const routes = [
         }
     },
     
+    // 404 handler
+    {  
+        method: ['GET', 'POST'],
+        path: '/{any*}',
+        handler: (request, response) => {
+            const accept = request.raw.req.headers.accept;
+            var errMessage = 'The page your are looking cannot be found!';
+
+            // take priority: check header if there’s a JSON REST request
+            if (accept && accept.match(/json/)) {
+                return response(Boom.notFound(errMessage));
+            }
+
+            response.view('404', {message: errMessage}).code(404);
+        }
+    },
+    
     // --------------------
     // Static file routes
     // ---------------------
